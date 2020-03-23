@@ -1,0 +1,5 @@
+*vivado*
+.*
+cmac_lbus_sim
+inkl_lbus_sim
+!.gitignore
