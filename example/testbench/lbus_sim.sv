@@ -96,7 +96,6 @@ module tb();
 		repeat (100) @(posedge init_clk);
 		rst = 0;
 		wait(rx_aligned);
-		repeat (500) @(posedge bus_clk);
 		traffic_rst = 0;
     end
 
