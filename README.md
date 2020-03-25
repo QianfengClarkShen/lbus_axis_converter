@@ -37,7 +37,6 @@ Up to 400 MHz for xczu19eg-ffvc1760-2-i
 | F9 Muxes                   |    0 |     0 |     65340 |  0.00 |
 | Block RAM Tile             |    0 |     0 |       984 |  0.00 |
 |   RAMB36/FIFO*             |    0 |     0 |       984 |  0.00 |
-
 |   RAMB18                   |    0 |     0 |      1968 |  0.00 |
 | URAM                       |    0 |     0 |       128 |  0.00 |
 | DSPs                       |    0 |     0 |      1968 |  0.00 |
