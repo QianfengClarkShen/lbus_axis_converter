@@ -4,6 +4,7 @@ Lbus to AXI4-Stream converter in verilog
 ## Features
 
 Support AXI4-Stream to LBUS and LBUS to AXI4-Stream
+
 Support bridge with Xilinx CMAC or Interlaken core
 
 ## Performance and Resource Usage
@@ -11,6 +12,7 @@ Support bridge with Xilinx CMAC or Interlaken core
 ### Latency 
 
 AXI4-Stream to LBUS Latency: 0 cycle or 1 cycle (depends on if TX register is chosen)
+
 LBUS to AXI4-Stream Latency: 0 cycle
 
 ### Clock Frequency
