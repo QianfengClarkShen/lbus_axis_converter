@@ -112,7 +112,7 @@ module lbus2axis # (
 	always @ (posedge clk) begin
 		if (rst)
 			rx_lbus_fifo_paused <= 1'b0;
-		if (rx_lbus_fifo_paused)
+		else if (rx_lbus_fifo_paused)
 			rx_lbus_fifo_paused <= 1'b0;
 		else if (rx_lbus_fifo_tvalid_out & rx_lbus_seg_ena_fifo_out[4])
 			rx_lbus_fifo_paused <= 1'b1;
