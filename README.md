@@ -1,6 +1,11 @@
 # lbus_axis_converter
 Lbus to AXI4-Stream converter in verilog
 
+## IP core installation
+1. download the git repo
+2. run 'make gen_ip'
+3. In Vivado, using "IP Catalog" to add <path_to_this_git_repo/ip_repo> as a new user ip repository.
+
 ## Features
 
 Support AXI4-Stream to LBUS and LBUS to AXI4-Stream
@@ -11,9 +16,9 @@ Support bridge with Xilinx CMAC or Interlaken core
 
 ### Latency 
 
-AXI4-Stream to LBUS Latency: 0 cycle or 1 cycle (depends on if TX register is chosen)
+AXI4-Stream to LBUS Latency: 0 cycle or 1 cycle (depends on if TX register is enabled)
 
-LBUS to AXI4-Stream Latency: 0 cycle
+LBUS to AXI4-Stream Latency: 0 cycle or 1 cycle (depends on if RX register is enabled)
 
 ### Clock Frequency
 
