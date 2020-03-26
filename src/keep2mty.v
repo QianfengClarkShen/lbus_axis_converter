@@ -5,52 +5,52 @@ module keep2mty (
 	output reg [3:0] mty
 );
 	always @ (*) begin
-		if (tkeep == 16'b1111111111111111) begin
+		if (tkeep[0]) begin
 			mty = 4'd0;
 		end
-		else if (tkeep == 16'b1111111111111110) begin
+		else if (tkeep[1]) begin
 			mty = 4'd1;
 		end
-		else if (tkeep == 16'b1111111111111100) begin
+		else if (tkeep[2]) begin
 			mty = 4'd2;
 		end
-		else if (tkeep == 16'b1111111111111000) begin
+		else if (tkeep[3]) begin
 			mty = 4'd3;
 		end
-		else if (tkeep == 16'b1111111111110000) begin
+		else if (tkeep[4]) begin
 			mty = 4'd4;
 		end
-		else if (tkeep == 16'b1111111111100000) begin
+		else if (tkeep[5]) begin
 			mty = 4'd5;
 		end
-		else if (tkeep == 16'b1111111111000000) begin
+		else if (tkeep[6]) begin
 			mty = 4'd6;
 		end
-		else if (tkeep == 16'b1111111110000000) begin
+		else if (tkeep[7]) begin
 			mty = 4'd7;
 		end
-		else if (tkeep == 16'b1111111100000000) begin
+		else if (tkeep[8]) begin
 			mty = 4'd8;
 		end
-		else if (tkeep == 16'b1111111000000000) begin
+		else if (tkeep[9]) begin
 			mty = 4'd9;
 		end
-		else if (tkeep == 16'b1111110000000000) begin
+		else if (tkeep[10]) begin
 			mty = 4'd10;
 		end
-		else if (tkeep == 16'b1111100000000000) begin
+		else if (tkeep[11]) begin
 			mty = 4'd11;
 		end
-		else if (tkeep == 16'b1111000000000000) begin
+		else if (tkeep[12]) begin
 			mty = 4'd12;
 		end
-		else if (tkeep == 16'b1110000000000000) begin
+		else if (tkeep[13]) begin
 			mty = 4'd13;
 		end
-		else if (tkeep == 16'b1100000000000000) begin
+		else if (tkeep[14]) begin
 			mty = 4'd14;
 		end
-		else if (tkeep == 16'b1000000000000000) begin
+		else if (tkeep[15]) begin
 			mty = 4'd15;
 		end
 		else begin

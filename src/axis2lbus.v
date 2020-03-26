@@ -1,8 +1,7 @@
 `timescale 1ps/1ps
 
 module axis2lbus # (
-	parameter ENABLE_ILKN_PORTS = 0,
-	parameter OUTPUT_REG = 0
+	parameter ENABLE_ILKN_PORTS = 0
 ) (
 	input wire clk,
 	input wire rst,
@@ -72,43 +71,6 @@ module axis2lbus # (
 	wire [3:0] tx_lbus_seg3_mty_int;
 
 /* --------------------------------------
-**  output regs (optional)
-   ------------------------------------*/
-	reg [10:0] tx_lbus_seg0_chan_out_reg;
-	reg [10:0] tx_lbus_seg1_chan_out_reg;
-	reg [10:0] tx_lbus_seg2_chan_out_reg;
-	reg [10:0] tx_lbus_seg3_chan_out_reg;
-	reg tx_lbus_seg0_bctlin_out_reg;
-	reg tx_lbus_seg1_bctlin_out_reg;
-	reg tx_lbus_seg2_bctlin_out_reg;
-	reg tx_lbus_seg3_bctlin_out_reg;
-
-	reg [127:0] tx_lbus_seg0_data_reg;
-	reg tx_lbus_seg0_ena_reg;
-	reg tx_lbus_seg0_sop_reg;
-	reg tx_lbus_seg0_eop_reg;
-	reg [3:0] tx_lbus_seg0_mty_reg;
-	reg tx_lbus_seg0_err_reg;
-	reg [127:0] tx_lbus_seg1_data_reg;
-	reg tx_lbus_seg1_ena_reg;
-	reg tx_lbus_seg1_sop_reg;
-	reg tx_lbus_seg1_eop_reg;
-	reg [3:0] tx_lbus_seg1_mty_reg;
-	reg tx_lbus_seg1_err_reg;
-	reg [127:0] tx_lbus_seg2_data_reg;
-	reg tx_lbus_seg2_ena_reg;
-	reg tx_lbus_seg2_sop_reg;
-	reg tx_lbus_seg2_eop_reg;
-	reg [3:0] tx_lbus_seg2_mty_reg;
-	reg tx_lbus_seg2_err_reg;
-	reg [127:0] tx_lbus_seg3_data_reg;
-	reg tx_lbus_seg3_ena_reg;
-	reg tx_lbus_seg3_sop_reg;
-	reg tx_lbus_seg3_eop_reg;
-	reg [3:0] tx_lbus_seg3_mty_reg;
-	reg tx_lbus_seg3_err_reg;
-
-/* --------------------------------------
 **  internal logic
    ------------------------------------*/
 	reg in_packet;
@@ -149,48 +111,14 @@ module axis2lbus # (
 **  output logic (optional)
    ------------------------------------*/
 	if (ENABLE_ILKN_PORTS) begin
-		if (OUTPUT_REG) begin
-			always @(posedge clk) begin
-				if (rst) begin
-					tx_lbus_seg0_chan_out_reg <= 11'b0;
-					tx_lbus_seg1_chan_out_reg <= 11'b0;
-					tx_lbus_seg2_chan_out_reg <= 11'b0;
-					tx_lbus_seg3_chan_out_reg <= 11'b0;
-					tx_lbus_seg0_bctlin_out_reg <= 1'b0;
-					tx_lbus_seg1_bctlin_out_reg <= 1'b0;
-					tx_lbus_seg2_bctlin_out_reg <= 1'b0;
-					tx_lbus_seg3_bctlin_out_reg <= 1'b0;
-				end
-				else if (tx_lbus_ready) begin
-					tx_lbus_seg0_chan_out_reg <= tx_lbus_seg0_chan_in;
-					tx_lbus_seg1_chan_out_reg <= tx_lbus_seg1_chan_in;
-					tx_lbus_seg2_chan_out_reg <= tx_lbus_seg2_chan_in;
-					tx_lbus_seg3_chan_out_reg <= tx_lbus_seg3_chan_in;
-					tx_lbus_seg0_bctlin_out_reg <= tx_lbus_seg0_bctlin_in;
-					tx_lbus_seg1_bctlin_out_reg <= tx_lbus_seg1_bctlin_in;
-					tx_lbus_seg2_bctlin_out_reg <= tx_lbus_seg2_bctlin_in;
-					tx_lbus_seg3_bctlin_out_reg <= tx_lbus_seg3_bctlin_in;
-				end
-			end
-			assign tx_lbus_seg0_chan_out = tx_lbus_seg0_chan_out_reg;
-			assign tx_lbus_seg1_chan_out = tx_lbus_seg1_chan_out_reg;
-			assign tx_lbus_seg2_chan_out = tx_lbus_seg2_chan_out_reg;
-			assign tx_lbus_seg3_chan_out = tx_lbus_seg3_chan_out_reg;
-			assign tx_lbus_seg0_bctlin_out = tx_lbus_seg0_bctlin_out_reg;
-			assign tx_lbus_seg1_bctlin_out = tx_lbus_seg1_bctlin_out_reg;
-			assign tx_lbus_seg2_bctlin_out = tx_lbus_seg2_bctlin_out_reg;
-			assign tx_lbus_seg3_bctlin_out = tx_lbus_seg3_bctlin_out_reg;
-		end
-		else begin
-			assign tx_lbus_seg0_chan_out = tx_lbus_seg0_chan_in;
-			assign tx_lbus_seg1_chan_out = tx_lbus_seg1_chan_in;
-			assign tx_lbus_seg2_chan_out = tx_lbus_seg2_chan_in;
-			assign tx_lbus_seg3_chan_out = tx_lbus_seg3_chan_in;
-			assign tx_lbus_seg0_bctlin_out = tx_lbus_seg0_bctlin_in;
-			assign tx_lbus_seg1_bctlin_out = tx_lbus_seg1_bctlin_in;
-			assign tx_lbus_seg2_bctlin_out = tx_lbus_seg2_bctlin_in;
-			assign tx_lbus_seg3_bctlin_out = tx_lbus_seg3_bctlin_in;
-		end
+		assign tx_lbus_seg0_chan_out = tx_lbus_seg0_chan_in;
+		assign tx_lbus_seg1_chan_out = tx_lbus_seg1_chan_in;
+		assign tx_lbus_seg2_chan_out = tx_lbus_seg2_chan_in;
+		assign tx_lbus_seg3_chan_out = tx_lbus_seg3_chan_in;
+		assign tx_lbus_seg0_bctlin_out = tx_lbus_seg0_bctlin_in;
+		assign tx_lbus_seg1_bctlin_out = tx_lbus_seg1_bctlin_in;
+		assign tx_lbus_seg2_bctlin_out = tx_lbus_seg2_bctlin_in;
+		assign tx_lbus_seg3_bctlin_out = tx_lbus_seg3_bctlin_in;
 	end
 	else begin
 		assign tx_lbus_seg0_chan_out = 11'b0;
@@ -206,114 +134,30 @@ module axis2lbus # (
 /* --------------------------------------
 **  output logic (common)
    ------------------------------------*/
-	if (OUTPUT_REG) begin
-		always @(posedge clk) begin
-			if (rst) begin
-				tx_lbus_seg0_data_reg <= 127'b0;
-				tx_lbus_seg1_data_reg <= 127'b0;
-				tx_lbus_seg2_data_reg <= 127'b0;
-				tx_lbus_seg3_data_reg <= 127'b0;
-				tx_lbus_seg0_ena_reg <= 1'b0;
-				tx_lbus_seg1_ena_reg <= 1'b0;
-				tx_lbus_seg2_ena_reg <= 1'b0;
-				tx_lbus_seg3_ena_reg <= 1'b0;
-				tx_lbus_seg0_sop_reg <= 1'b0;
-				tx_lbus_seg1_sop_reg <= 1'b0;
-				tx_lbus_seg2_sop_reg <= 1'b0;
-				tx_lbus_seg3_sop_reg <= 1'b0;
-				tx_lbus_seg0_eop_reg <= 1'b0;
-				tx_lbus_seg1_eop_reg <= 1'b0;
-				tx_lbus_seg2_eop_reg <= 1'b0;
-				tx_lbus_seg3_eop_reg <= 1'b0;
-				tx_lbus_seg0_mty_reg <= 4'b0;
-				tx_lbus_seg1_mty_reg <= 4'b0;
-				tx_lbus_seg2_mty_reg <= 4'b0;
-				tx_lbus_seg3_mty_reg <= 4'b0;
-				tx_lbus_seg0_err_reg <= 1'b0;
-				tx_lbus_seg1_err_reg <= 1'b0;
-				tx_lbus_seg2_err_reg <= 1'b0;
-				tx_lbus_seg3_err_reg <= 1'b0;
-			end
-			else if (tx_lbus_ready) begin
-				tx_lbus_seg0_data_reg <= s_axis_tdata[511:384];
-				tx_lbus_seg1_data_reg <= s_axis_tdata[383:256];
-				tx_lbus_seg2_data_reg <= s_axis_tdata[255:128];
-				tx_lbus_seg3_data_reg <= s_axis_tdata[127:0];
-				tx_lbus_seg0_ena_reg <= s_axis_tvalid & tkeep_seg0[15];
-				tx_lbus_seg1_ena_reg <= s_axis_tvalid & tkeep_seg1[15];
-				tx_lbus_seg2_ena_reg <= s_axis_tvalid & tkeep_seg2[15];
-				tx_lbus_seg3_ena_reg <= s_axis_tvalid & tkeep_seg3[15];
-				tx_lbus_seg0_sop_reg <= s_axis_tvalid & ~in_packet;
-				tx_lbus_seg1_sop_reg <= 1'b0;
-				tx_lbus_seg2_sop_reg <= 1'b0;
-				tx_lbus_seg3_sop_reg <= 1'b0;
-				tx_lbus_seg0_eop_reg <= s_axis_tlast & tkeep_seg0[15] & ~tkeep_seg1[15];
-				tx_lbus_seg1_eop_reg <= s_axis_tlast & tkeep_seg1[15] & ~tkeep_seg2[15];
-				tx_lbus_seg2_eop_reg <= s_axis_tlast & tkeep_seg2[15] & ~tkeep_seg3[15];
-				tx_lbus_seg3_eop_reg <= s_axis_tlast & tkeep_seg3[15];
-				tx_lbus_seg0_mty_reg <= tx_lbus_seg0_mty_int;
-				tx_lbus_seg1_mty_reg <= tx_lbus_seg1_mty_int;
-				tx_lbus_seg2_mty_reg <= tx_lbus_seg2_mty_int;
-				tx_lbus_seg3_mty_reg <= tx_lbus_seg3_mty_int;
-				tx_lbus_seg0_err_reg <= (&(~tkeep_seg0 & (tkeep_seg0<<1))) | (~tkeep_seg0[0] & tkeep_seg1[15]);
-				tx_lbus_seg1_err_reg <= (&(~tkeep_seg1 & (tkeep_seg1<<1))) | (~tkeep_seg1[0] & tkeep_seg2[15]);
-				tx_lbus_seg2_err_reg <= (&(~tkeep_seg2 & (tkeep_seg2<<1))) | (~tkeep_seg2[0] & tkeep_seg3[15]);
-				tx_lbus_seg3_err_reg <= &(~tkeep_seg3 & (tkeep_seg3<<1));
-			end
-		end
-
-		assign tx_lbus_seg0_data = tx_lbus_seg0_data_reg;
-		assign tx_lbus_seg1_data = tx_lbus_seg1_data_reg;
-		assign tx_lbus_seg2_data = tx_lbus_seg2_data_reg;
-		assign tx_lbus_seg3_data = tx_lbus_seg3_data_reg;
-		//according to Xilinx pg203, page 64, ena should be low if ready is low
-		assign tx_lbus_seg0_ena = tx_lbus_ready ? tx_lbus_seg0_ena_reg : 1'b0;
-		assign tx_lbus_seg1_ena = tx_lbus_ready ? tx_lbus_seg1_ena_reg : 1'b0;
-		assign tx_lbus_seg2_ena = tx_lbus_ready ? tx_lbus_seg2_ena_reg : 1'b0;
-		assign tx_lbus_seg3_ena = tx_lbus_ready ? tx_lbus_seg3_ena_reg : 1'b0;
-		assign tx_lbus_seg0_sop = tx_lbus_seg0_sop_reg;
-		assign tx_lbus_seg1_sop = tx_lbus_seg1_sop_reg;
-		assign tx_lbus_seg2_sop = tx_lbus_seg2_sop_reg;
-		assign tx_lbus_seg3_sop = tx_lbus_seg3_sop_reg;
-		assign tx_lbus_seg0_eop = tx_lbus_seg0_eop_reg;
-		assign tx_lbus_seg1_eop = tx_lbus_seg1_eop_reg;
-		assign tx_lbus_seg2_eop = tx_lbus_seg2_eop_reg;
-		assign tx_lbus_seg3_eop = tx_lbus_seg3_eop_reg;
-		assign tx_lbus_seg0_mty = tx_lbus_seg0_mty_reg;
-		assign tx_lbus_seg1_mty = tx_lbus_seg1_mty_reg;
-		assign tx_lbus_seg2_mty = tx_lbus_seg2_mty_reg;
-		assign tx_lbus_seg3_mty = tx_lbus_seg3_mty_reg;
-		assign tx_lbus_seg0_err = tx_lbus_seg0_err_reg;
-		assign tx_lbus_seg1_err = tx_lbus_seg1_err_reg;
-		assign tx_lbus_seg2_err = tx_lbus_seg2_err_reg;
-		assign tx_lbus_seg3_err = tx_lbus_seg3_err_reg;
-	end
-	else begin
-		assign tx_lbus_seg0_data = s_axis_tdata[511:384];
-		assign tx_lbus_seg1_data = s_axis_tdata[383:256];
-		assign tx_lbus_seg2_data = s_axis_tdata[255:128];
-		assign tx_lbus_seg3_data = s_axis_tdata[127:0];
-		assign tx_lbus_seg0_ena = tx_lbus_ready ? s_axis_tvalid & tkeep_seg0[15] : 1'b0;
-		assign tx_lbus_seg1_ena = tx_lbus_ready ? s_axis_tvalid & tkeep_seg1[15] : 1'b0;
-		assign tx_lbus_seg2_ena = tx_lbus_ready ? s_axis_tvalid & tkeep_seg2[15] : 1'b0;
-		assign tx_lbus_seg3_ena = tx_lbus_ready ? s_axis_tvalid & tkeep_seg3[15] : 1'b0;
-		assign tx_lbus_seg0_sop = s_axis_tvalid & ~in_packet;
-		assign tx_lbus_seg1_sop = 1'b0;
-		assign tx_lbus_seg2_sop = 1'b0;
-		assign tx_lbus_seg3_sop = 1'b0;
-		assign tx_lbus_seg0_eop = s_axis_tlast & tkeep_seg0[15] & ~tkeep_seg1[15];
-		assign tx_lbus_seg1_eop = s_axis_tlast & tkeep_seg1[15] & ~tkeep_seg2[15];
-		assign tx_lbus_seg2_eop = s_axis_tlast & tkeep_seg2[15] & ~tkeep_seg3[15];
-		assign tx_lbus_seg3_eop = s_axis_tlast & tkeep_seg3[15];
-		assign tx_lbus_seg0_mty = tx_lbus_seg0_mty_int;
-		assign tx_lbus_seg1_mty = tx_lbus_seg1_mty_int;
-		assign tx_lbus_seg2_mty = tx_lbus_seg2_mty_int;
-		assign tx_lbus_seg3_mty = tx_lbus_seg3_mty_int;
-		assign tx_lbus_seg0_err = (&(~tkeep_seg0 & (tkeep_seg0<<1))) | (~tkeep_seg0[0] & tkeep_seg1[15]);
-		assign tx_lbus_seg1_err = (&(~tkeep_seg1 & (tkeep_seg1<<1))) | (~tkeep_seg1[0] & tkeep_seg2[15]);
-		assign tx_lbus_seg2_err = (&(~tkeep_seg2 & (tkeep_seg2<<1))) | (~tkeep_seg2[0] & tkeep_seg3[15]);
-		assign tx_lbus_seg3_err = &(~tkeep_seg3 & (tkeep_seg3<<1));
-	end
+	assign tx_lbus_seg0_data = s_axis_tdata[511:384];
+	assign tx_lbus_seg1_data = s_axis_tdata[383:256];
+	assign tx_lbus_seg2_data = s_axis_tdata[255:128];
+	assign tx_lbus_seg3_data = s_axis_tdata[127:0];
+	assign tx_lbus_seg0_ena = tx_lbus_ready ? s_axis_tvalid & tkeep_seg0[15] : 1'b0;
+	assign tx_lbus_seg1_ena = tx_lbus_ready ? s_axis_tvalid & tkeep_seg1[15] : 1'b0;
+	assign tx_lbus_seg2_ena = tx_lbus_ready ? s_axis_tvalid & tkeep_seg2[15] : 1'b0;
+	assign tx_lbus_seg3_ena = tx_lbus_ready ? s_axis_tvalid & tkeep_seg3[15] : 1'b0;
+	assign tx_lbus_seg0_sop = s_axis_tvalid & ~in_packet;
+	assign tx_lbus_seg1_sop = 1'b0;
+	assign tx_lbus_seg2_sop = 1'b0;
+	assign tx_lbus_seg3_sop = 1'b0;
+	assign tx_lbus_seg0_eop = s_axis_tlast & tkeep_seg0[15] & ~tkeep_seg1[15];
+	assign tx_lbus_seg1_eop = s_axis_tlast & tkeep_seg1[15] & ~tkeep_seg2[15];
+	assign tx_lbus_seg2_eop = s_axis_tlast & tkeep_seg2[15] & ~tkeep_seg3[15];
+	assign tx_lbus_seg3_eop = s_axis_tlast & tkeep_seg3[15];
+	assign tx_lbus_seg0_mty = tx_lbus_seg0_mty_int;
+	assign tx_lbus_seg1_mty = tx_lbus_seg1_mty_int;
+	assign tx_lbus_seg2_mty = tx_lbus_seg2_mty_int;
+	assign tx_lbus_seg3_mty = tx_lbus_seg3_mty_int;
+	assign tx_lbus_seg0_err = (&(~tkeep_seg0 & (tkeep_seg0<<1))) | (~tkeep_seg0[0] & tkeep_seg1[15]);
+	assign tx_lbus_seg1_err = (&(~tkeep_seg1 & (tkeep_seg1<<1))) | (~tkeep_seg1[0] & tkeep_seg2[15]);
+	assign tx_lbus_seg2_err = (&(~tkeep_seg2 & (tkeep_seg2<<1))) | (~tkeep_seg2[0] & tkeep_seg3[15]);
+	assign tx_lbus_seg3_err = &(~tkeep_seg3 & (tkeep_seg3<<1));
 
 	assign s_axis_tready = tx_lbus_ready;
 	assign tx_lbus_ready_out = tx_lbus_ready;

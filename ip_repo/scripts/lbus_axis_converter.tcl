@@ -4,8 +4,7 @@ set script_dir [file dirname [file normalize [info script]]]
 
 create_project $project_name $project_dir/$project_name -part xczu19eg-ffvc1760-2-i
 
-set source_repo "${project_dir}/../../src"
-set interface_repo "${project_dir}/../interfaces"
+set source_repo "${project_dir}/../src"
 import_files -norecurse [glob ${source_repo}/*.v]
 
 ipx::package_project -root_dir ${project_dir}/${project_name}/${project_name}.srcs/sources_1 -vendor clarkshen.com -library user -taxonomy /UserIP
@@ -65,24 +64,38 @@ foreach bus {inkl_lbus_tx inkl_lbus_rx} direction {tx rx} field {chan_out chan_i
 	}
 }
 
-foreach bus {cmac_lbus_tx cmac_lbus_rx inkl_lbus_tx inkl_lbus_rx} {
-	ipx::associate_bus_interfaces -busif cmac_lbus_tx -clock clk [ipx::current_core]
+foreach bus {s_axis cmac_lbus_tx inkl_lbus_tx} {
+	ipx::associate_bus_interfaces -busif $bus -clock tx_clk [ipx::current_core]
+}
+foreach bus {m_axis cmac_lbus_rx inkl_lbus_rx} {
+	ipx::associate_bus_interfaces -busif $bus -clock rx_clk [ipx::current_core]
 }
 
-set_property widget {comboBox} [ipgui::get_guiparamspec -name "ENDIANNESS" -component [ipx::current_core] ]
-set_property value_validation_type pairs [ipx::get_user_parameters ENDIANNESS -of_objects [ipx::current_core]]
-set_property value_validation_pairs {{Big Endian} 1 {Small Endian} 0} [ipx::get_user_parameters ENDIANNESS -of_objects [ipx::current_core]]
+set_property display_name {Interface} [ipgui::get_guiparamspec -name "ENABLE_ILKN_PORTS" -component [ipx::current_core]]
 set_property widget {comboBox} [ipgui::get_guiparamspec -name "ENABLE_ILKN_PORTS" -component [ipx::current_core] ]
 set_property value_validation_type pairs [ipx::get_user_parameters ENABLE_ILKN_PORTS -of_objects [ipx::current_core]]
 set_property value_validation_pairs {CMAC 0 Interlaken 1} [ipx::get_user_parameters ENABLE_ILKN_PORTS -of_objects [ipx::current_core]]
+
+set_property display_name {AXI-4 Stream Endianness} [ipgui::get_guiparamspec -name "ENDIANNESS" -component [ipx::current_core]]
+set_property widget {comboBox} [ipgui::get_guiparamspec -name "ENDIANNESS" -component [ipx::current_core] ]
+set_property value_validation_type pairs [ipx::get_user_parameters ENDIANNESS -of_objects [ipx::current_core]]
+set_property value_validation_pairs {{Big Endian} 1 {Small Endian} 0} [ipx::get_user_parameters ENDIANNESS -of_objects [ipx::current_core]]
+
+set_property display_name {RX input register} [ipgui::get_guiparamspec -name "RX_INPUT_REG" -component [ipx::current_core] ]
+set_property widget {checkBox} [ipgui::get_guiparamspec -name "RX_INPUT_REG" -component [ipx::current_core] ]
+set_property value true [ipx::get_user_parameters RX_INPUT_REG -of_objects [ipx::current_core]]
+set_property value true [ipx::get_hdl_parameters RX_INPUT_REG -of_objects [ipx::current_core]]
+set_property value_format bool [ipx::get_user_parameters RX_INPUT_REG -of_objects [ipx::current_core]]
+set_property value_format bool [ipx::get_hdl_parameters RX_INPUT_REG -of_objects [ipx::current_core]]
+set_property value false [ipx::get_user_parameters RX_INPUT_REG -of_objects [ipx::current_core]]
+set_property value false [ipx::get_hdl_parameters RX_INPUT_REG -of_objects [ipx::current_core]]
+
 set_property display_name {TX output register} [ipgui::get_guiparamspec -name "TX_OUTPUT_REG" -component [ipx::current_core] ]
 set_property widget {checkBox} [ipgui::get_guiparamspec -name "TX_OUTPUT_REG" -component [ipx::current_core] ]
 set_property value true [ipx::get_user_parameters TX_OUTPUT_REG -of_objects [ipx::current_core]]
 set_property value true [ipx::get_hdl_parameters TX_OUTPUT_REG -of_objects [ipx::current_core]]
 set_property value_format bool [ipx::get_user_parameters TX_OUTPUT_REG -of_objects [ipx::current_core]]
 set_property value_format bool [ipx::get_hdl_parameters TX_OUTPUT_REG -of_objects [ipx::current_core]]
-set_property display_name {Interface} [ipgui::get_guiparamspec -name "ENABLE_ILKN_PORTS" -component [ipx::current_core]]
-set_property display_name {AXI-4 Stream Endianness} [ipgui::get_guiparamspec -name "ENDIANNESS" -component [ipx::current_core]]
 set_property value false [ipx::get_user_parameters TX_OUTPUT_REG -of_objects [ipx::current_core]]
 set_property value false [ipx::get_hdl_parameters TX_OUTPUT_REG -of_objects [ipx::current_core]]
 

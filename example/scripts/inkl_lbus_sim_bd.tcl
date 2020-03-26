@@ -227,11 +227,11 @@ proc create_root_design { parentCell } {
   connect_bd_net -net TX_ENABLE_dout [get_bd_pins TX_ENABLE/dout] [get_bd_pins interlaken_0/ctl_tx_enable]
   connect_bd_net -net clk_wiz_0_clk_out1 [get_bd_pins clk_wiz_0/clk_out1] [get_bd_pins vivado_is_so_smart_0/wire1_in]
   connect_bd_net -net clk_wiz_0_clk_out2 [get_bd_ports bus_clk] [get_bd_pins interlaken_0/lbus_clk] [get_bd_pins vivado_is_so_smart_0/wire2_out]
-  connect_bd_net -net clk_wiz_0_clk_out3 [get_bd_pins clk_wiz_0/clk_out2] [get_bd_pins lbus_axis_converter_0/clk] [get_bd_pins vivado_is_so_smart_0/wire2_in]
+  connect_bd_net -net clk_wiz_0_clk_out3 [get_bd_pins clk_wiz_0/clk_out2] [get_bd_pins lbus_axis_converter_0/tx_clk] [get_bd_pins lbus_axis_converter_0/rx_clk] [get_bd_pins vivado_is_so_smart_0/wire2_in]
   connect_bd_net -net init_clk_1 [get_bd_ports init_clk] [get_bd_pins interlaken_0/init_clk]
   connect_bd_net -net interlaken_0_gt_txusrclk2 [get_bd_pins clk_wiz_0/clk_in1] [get_bd_pins interlaken_0/gt_txusrclk2]
   connect_bd_net -net interlaken_0_stat_rx_aligned [get_bd_ports rx_aligned] [get_bd_pins interlaken_0/stat_rx_aligned]
-  connect_bd_net -net rst_0_1 [get_bd_ports usr_rst] [get_bd_pins lbus_axis_converter_0/rst]
+  connect_bd_net -net rst_0_1 [get_bd_ports usr_rst] [get_bd_pins lbus_axis_converter_0/tx_rst] [get_bd_pins lbus_axis_converter_0/rx_rst]
   connect_bd_net -net rst_1 [get_bd_ports rst] [get_bd_pins clk_wiz_0/reset] [get_bd_pins interlaken_0/sys_reset]
   connect_bd_net -net vivado_is_so_smart_0_wire1_out [get_bd_pins interlaken_0/core_clk] [get_bd_pins vivado_is_so_smart_0/wire1_out]
 

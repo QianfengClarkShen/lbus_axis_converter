@@ -2,7 +2,7 @@ set project_dir [file dirname [file dirname [file normalize [info script]]]]
 set project_name "inkl_lbus_sim"
 set script_dir [file dirname [file normalize [info script]]]
 create_project $project_name $project_dir/$project_name -part xczu19eg-ffvc1760-2-i
-set_property ip_repo_paths "${project_dir}/../ip_repo/assembled_ips/" [current_project]
+set_property ip_repo_paths "${project_dir}/../ip_repo" [current_project]
 update_ip_catalog -rebuild
 source $script_dir/util.tcl
 import_files -norecurse [glob $project_dir/verilogs/*.v]

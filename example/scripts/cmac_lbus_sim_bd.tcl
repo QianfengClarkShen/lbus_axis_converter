@@ -207,7 +207,7 @@ proc create_root_design { parentCell } {
   connect_bd_intf_net -intf_net s_axis_1 [get_bd_intf_ports s_axis] [get_bd_intf_pins lbus_axis_converter_0/s_axis]
 
   # Create port connections
-  connect_bd_net -net CMAC_USPLUS_gt_txusrclk2 [get_bd_ports bus_clk] [get_bd_pins CMAC_USPLUS/gt_txusrclk2] [get_bd_pins CMAC_USPLUS/rx_clk] [get_bd_pins lbus_axis_converter_0/clk]
+  connect_bd_net -net CMAC_USPLUS_gt_txusrclk2 [get_bd_ports bus_clk] [get_bd_pins CMAC_USPLUS/gt_txusrclk2] [get_bd_pins CMAC_USPLUS/rx_clk] [get_bd_pins lbus_axis_converter_0/tx_clk] [get_bd_pins lbus_axis_converter_0/rx_clk]
   connect_bd_net -net CMAC_USPLUS_stat_rx_aligned [get_bd_ports rx_aligned] [get_bd_pins CMAC_USPLUS/ctl_tx_enable] [get_bd_pins CMAC_USPLUS/stat_rx_aligned] [get_bd_pins not_rx_aligned/Op1]
   connect_bd_net -net CMAC_USPLUS_usr_rx_reset [get_bd_pins CMAC_USPLUS/usr_rx_reset] [get_bd_pins not_rx_reset/Op1]
   connect_bd_net -net CMAC_USPLUS_usr_tx_reset [get_bd_pins CMAC_USPLUS/usr_tx_reset] [get_bd_pins not_tx_reset/Op1]
@@ -220,7 +220,7 @@ proc create_root_design { parentCell } {
   connect_bd_net -net not_rx_aligned_Res [get_bd_pins not_rx_aligned/Res] [get_bd_pins one_bit_and/Op1]
   connect_bd_net -net not_rx_reset_Res [get_bd_pins CMAC_USPLUS/ctl_rx_enable] [get_bd_pins not_rx_reset/Res]
   connect_bd_net -net not_tx_reset_Res [get_bd_pins not_tx_reset/Res] [get_bd_pins one_bit_and/Op2]
-  connect_bd_net -net rst_0_1 [get_bd_ports usr_rst] [get_bd_pins lbus_axis_converter_0/rst]
+  connect_bd_net -net rst_0_1 [get_bd_ports usr_rst] [get_bd_pins lbus_axis_converter_0/tx_rst] [get_bd_pins lbus_axis_converter_0/rx_rst]
   connect_bd_net -net sys_reset_0_1 [get_bd_ports rst] [get_bd_pins CMAC_USPLUS/sys_reset]
   connect_bd_net -net util_vector_logic_0_Res [get_bd_pins CMAC_USPLUS/ctl_tx_send_rfi] [get_bd_pins one_bit_and/Res]
 
