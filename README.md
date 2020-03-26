@@ -1,8 +1,8 @@
 # lbus_axis_converter
-Lbus to AXI4-Stream converter in verilog
+Lbus to AXI4-Stream converter in verilog, tested in Vivado 2019.1
 
 ## IP core installation
-1. download the git repo
+1. download this git repo
 2. run 'make gen_ip'
 3. In Vivado, using "IP Catalog" to add <path_to_this_git_repo/ip_repo> as a new user ip repository.
 
