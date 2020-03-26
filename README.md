@@ -18,6 +18,8 @@ Support AXI4-Stream to LBUS and LBUS to AXI4-Stream
 
 Support bridge with Xilinx CMAC or Interlaken core
 
+Support both small endian and big endian for AXI4-Stream
+
 ## Performance and Resource Usage
 
 ### Latency 
