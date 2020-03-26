@@ -1,5 +1,5 @@
 # lbus_axis_converter
-Lbus to AXI4-Stream converter in verilog, tested in Vivado 2019.1
+LBUS to AXI4-Stream converter in verilog, tested in Vivado 2019.1
 
 ## IP core installation
 1. download this git repo
