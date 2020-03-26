@@ -2,4 +2,6 @@
 .*
 cmac_lbus_sim
 inkl_lbus_sim
+!scripts/*
+!verilogs/*
 !.gitignore
