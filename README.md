@@ -31,9 +31,9 @@ LBUS to AXI4-Stream Latency: 0 cycle or 1 cycle (depends on if RX register is en
 Up to 400 MHz for xczu19eg-ffvc1760-2-i
 
 ### Resource Usage (take xczu19eg-ffvc1760-2-i as an example, usage varies based on different synthesis parameters)
-|          Site Type         |    Used   |
+|        Resource Type       |    Used   |
 | -------------------------- | --------- |
-| CLB LUTs*                  | 2000~3000 |
+| CLB LUTs                   | 2000~3000 |
 | CLB Registers as Flip Flop | 1000~2100 |
 | Block RAM Tile             |    0      |
 | URAM                       |    0      |
